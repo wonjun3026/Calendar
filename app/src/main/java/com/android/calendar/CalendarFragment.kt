@@ -77,6 +77,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.ItemClick, ScheduleAdapter.
         val currentDate = date.toString().drop(8).toInt() // 날짜
         val currentDay = day.dropLast(2)  // 요일
         var k = 0
+        var n = 0
 
         if (currentYear % 4 == 0){
             dateCal[2] = 29
@@ -84,10 +85,12 @@ class CalendarFragment : Fragment(), CalendarAdapter.ItemClick, ScheduleAdapter.
 
         binding.month.text = "${currentMonth}월"
 
-
+        k = currentDate%7
+        n = k
         while (weekCal[k] != currentDay){
             k++
         }
+        k -= n
         for (i in 1..6){
             weekList.add("일")
             weekList.add("월")
@@ -97,6 +100,7 @@ class CalendarFragment : Fragment(), CalendarAdapter.ItemClick, ScheduleAdapter.
             weekList.add("금")
             weekList.add("토")
         }
+        Log.d("aaa", k.toString())
 
         for (l in dateCal[currentMonth-1]-k..dateCal[currentMonth-1]){
             dayList.add(l)
